@@ -14,3 +14,45 @@ Mob3 - Persistence and dependency management
 * Dynamic linking - only references to dependencies are stored in executable. dependencies themselves are loaded dynamically at runtime. Con: more uncertainty about enviro in which app will run. Slows down the app launch time.
 * system frameworks are all linked dynamically
 * third party dependencies can be linked dynamically and statically since iOS8, prior only static libraries were allowed.
+
+#### dependency managers
+* Cocoapods - most popular
+* Carthage - second most popular
+* Swift Package Manager - released with swift 3
+* Manual dependency management : need to maintain dependencies manually
+* non-trivial to update to new versions of your dependencies.
+* Cocoapods and Carthage have been around for years, maintained by third parties
+* SwiftPackageManager - updated by apple and is open source
+
+## Wed Jan 10
+### Objectives
+
+#### UserDefaults
+* Allows us to store state in a app as simple key value pairs
+* Use cases: settings, themes, levels, user data.
+
+#### Pros
+* wuick to store native data types
+
+#### Cons
+* not secure: do not store passwords/ api keys in the userDefaults
+* Cannot perform any complex queries, like user objects.key
+
+
+### Swift KeyChain
+* Service that iOS provides, that is not part of your app.
+* When you delete the app, it does not delete the keychains key / value pair.
+* Everything is encrypted by Apple, and is considered safe.
+* Stored sensitive information, such as passwords, auth tokens.
+* You can share keychain items between apps.
+* You can group keychain identifiers, so they can share the credentials.
+
+#### Cons
+* Items persist even with app is deleted
+* Not used to store complex objects, just simple key / value stores
+
+#### NSCoder - Library
+* Encoding/Decoding
+* Encoding a representation that can be stored on disc, to be retrieved laster
+* Decoding
+* Can be worked side by side with UserDefaults
