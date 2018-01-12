@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B951F02620091840006E7DE3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951F02520091840006E7DE3 /* UserModel.swift */; };
+		B951F02820091DC3006E7DE3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951F02720091DC3006E7DE3 /* Networking.swift */; };
 		B9F385EA200827C1004287EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F385E9200827C1004287EB /* AppDelegate.swift */; };
 		B9F385EC200827C1004287EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F385EB200827C1004287EB /* ViewController.swift */; };
 		B9F385EF200827C1004287EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F385ED200827C1004287EB /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		B951F02520091840006E7DE3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		B951F02720091DC3006E7DE3 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		B9F385E6200827C1004287EB /* Test-KeyChainSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test-KeyChainSwift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F385E9200827C1004287EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9F385EB200827C1004287EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				B9F385E9200827C1004287EB /* AppDelegate.swift */,
 				B9F385EB200827C1004287EB /* ViewController.swift */,
 				B951F02520091840006E7DE3 /* UserModel.swift */,
+				B951F02720091DC3006E7DE3 /* Networking.swift */,
 				B9F385ED200827C1004287EB /* Main.storyboard */,
 				B9F385F0200827C1004287EB /* Assets.xcassets */,
 				B9F385F2200827C1004287EB /* LaunchScreen.storyboard */,
@@ -142,6 +145,7 @@
 				B9F385EC200827C1004287EB /* ViewController.swift in Sources */,
 				B951F02620091840006E7DE3 /* UserModel.swift in Sources */,
 				B9F385EA200827C1004287EB /* AppDelegate.swift in Sources */,
+				B951F02820091DC3006E7DE3 /* Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
