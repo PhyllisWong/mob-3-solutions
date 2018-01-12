@@ -24,7 +24,8 @@ extension User: Decodable {
         case username
         case password
     }
-        
+    
+    // decode the json data to Swift
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: UserKeys.self)
         let username = try container.decode(String.self, forKey: .username)
@@ -32,4 +33,15 @@ extension User: Decodable {
         
         self.init(username: username, password: password)
     }
+}
+
+extension User: Encodable {
+    
+    // encode the Swift data to json
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: UserKeys.self)
+        try container.encode(username, forKey: .username)
+        try container.encode(password, forKey: .password)
+    }
+    
 }
