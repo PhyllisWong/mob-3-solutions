@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		B951F02620091840006E7DE3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951F02520091840006E7DE3 /* UserModel.swift */; };
 		B951F02820091DC3006E7DE3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951F02720091DC3006E7DE3 /* Networking.swift */; };
+		B9CEC8AA200D541B00AFD049 /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CEC8A9200D541B00AFD049 /* KeychainSwift.framework */; };
 		B9F385EA200827C1004287EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F385E9200827C1004287EB /* AppDelegate.swift */; };
-		B9F385EC200827C1004287EB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F385EB200827C1004287EB /* ViewController.swift */; };
+		B9F385EC200827C1004287EB /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F385EB200827C1004287EB /* LoginVC.swift */; };
 		B9F385EF200827C1004287EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F385ED200827C1004287EB /* Main.storyboard */; };
 		B9F385F1200827C1004287EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9F385F0200827C1004287EB /* Assets.xcassets */; };
 		B9F385F4200827C1004287EB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F385F2200827C1004287EB /* LaunchScreen.storyboard */; };
@@ -19,9 +20,10 @@
 /* Begin PBXFileReference section */
 		B951F02520091840006E7DE3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B951F02720091DC3006E7DE3 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		B9CEC8A9200D541B00AFD049 /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
 		B9F385E6200827C1004287EB /* Test-KeyChainSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test-KeyChainSwift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F385E9200827C1004287EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B9F385EB200827C1004287EB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B9F385EB200827C1004287EB /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B9F385EE200827C1004287EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B9F385F0200827C1004287EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9F385F3200827C1004287EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -33,17 +35,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9CEC8AA200D541B00AFD049 /* KeychainSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B9CEC8A8200D541B00AFD049 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B9CEC8A9200D541B00AFD049 /* KeychainSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B9F385DD200827C1004287EB = {
 			isa = PBXGroup;
 			children = (
 				B9F385E8200827C1004287EB /* Test-KeyChainSwift */,
 				B9F385E7200827C1004287EB /* Products */,
+				B9CEC8A8200D541B00AFD049 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,7 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				B9F385E9200827C1004287EB /* AppDelegate.swift */,
-				B9F385EB200827C1004287EB /* ViewController.swift */,
+				B9F385EB200827C1004287EB /* LoginVC.swift */,
 				B951F02520091840006E7DE3 /* UserModel.swift */,
 				B951F02720091DC3006E7DE3 /* Networking.swift */,
 				B9F385ED200827C1004287EB /* Main.storyboard */,
@@ -80,6 +92,7 @@
 				B9F385E2200827C1004287EB /* Sources */,
 				B9F385E3200827C1004287EB /* Frameworks */,
 				B9F385E4200827C1004287EB /* Resources */,
+				B9CEC8AB200D543500AFD049 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -137,12 +150,30 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B9CEC8AB200D543500AFD049 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainSwift.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/KeychainSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B9F385E2200827C1004287EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9F385EC200827C1004287EB /* ViewController.swift in Sources */,
+				B9F385EC200827C1004287EB /* LoginVC.swift in Sources */,
 				B951F02620091840006E7DE3 /* UserModel.swift in Sources */,
 				B9F385EA200827C1004287EB /* AppDelegate.swift in Sources */,
 				B951F02820091DC3006E7DE3 /* Networking.swift in Sources */,
@@ -284,6 +315,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S44SNCV32X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Test-KeyChainSwift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -300,6 +335,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S44SNCV32X;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Test-KeyChainSwift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

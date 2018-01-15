@@ -14,10 +14,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Test_KeyChainSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="LoginVC" storyboardIdentifier="LoginVC" id="BYZ-38-t0r" customClass="LoginVC" customModule="Test_KeyChainSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -67,6 +67,9 @@
                                         <state key="normal" title="login">
                                             <color key="titleColor" red="0.98031669860000004" green="0.97607129810000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="didPressLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yAP-nx-WH1"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="start by creating username &amp; password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K40-Zt-ADS">
                                         <rect key="frame" x="37.5" y="272" width="300" height="20.5"/>
@@ -89,15 +92,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="w4B-Hz-Vvl"/>
+                    <connections>
+                        <outlet property="passwordTF" destination="WEe-BT-6je" id="6oo-lx-gNS"/>
+                        <outlet property="usernameTF" destination="6GR-uh-hit" id="OSX-aX-OZp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="456.80000000000001" y="118.29085457271366"/>
         </scene>
-        <!--View Controller-->
+        <!--SuccessVC-->
         <scene sceneID="msz-3w-zNc">
             <objects>
-                <viewController id="fMF-CV-sHD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SuccessVC" title="SuccessVC" id="fMF-CV-sHD" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nI0-w9-JMn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -56,3 +56,19 @@ Mob3 - Persistence and dependency management
 * Encoding a representation that can be stored on disc, to be retrieved laster
 * Decoding
 * Can be worked side by side with UserDefaults
+
+### Filesystem
+* every app is in it's own isolated sandbox (your app)
+* each app is isolated from the rest of the system (prevents the app from reaching out into essential operating files)
+* sandbox has 2 containers:
+    1. Bundle container: all required resources, frameworks, assets, code. iOS builds it at compile time
+        * once you ship it, you cannot change anything in the bundle
+    1. Data container: documents, library, temp folder. Generated when you install the app. Behaves like finder. Store user generated content. Backed up by iTunes. Backups can be made available via iTunes, File-sharing.
+    1. Temp folder gets cleared by the file system
+    1. Library: used to store files that you don't want to expose to the user
+        * sub directory under the library is called caches
+        * cache gets cleaned out by the iOS.
+
+* Directories are related to core data. Set up of core data relies on some knowledge of the file system.
+
+#### Using the File manager

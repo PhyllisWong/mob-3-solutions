@@ -7,6 +7,7 @@
 //
 
 import Foundation
+// import KeychainSwift
 
 
 /*
@@ -57,8 +58,6 @@ enum Route {
         switch self {
         case .userSignup, .userLogin:
             return "/users"
-        default:
-            return "/users"
         }
     }
     
@@ -91,10 +90,42 @@ enum Route {
 }
 
 
-
-
-
-
+class Networking {
+    
+    // networking method
+    
+    static func fetch(route: Route, completionHandler: @escaping(Data, Int) -> Void) {
+        
+        // Set the URL string and append the path
+        let baseURL = "http://127.0.0.1:5000/"
+        let fullURLString = URL.init(string: baseURL.appending(route.urlPath()))
+        
+        // Append the URL params using the KeychainSwift library
+        let requestURLString = fullURLString?.appendingPathComponent(route.urlPath())
+        
+        var components = URLComponents(url: requestURLString!, resolvingAgainstBaseURL: true)
+        components?.queryItems = route.urlParams()
+        
+        var request = URLRequest(url: components!.url!)
+        request.allHTTPHeaderFields = route.header(token: "Basic dGVzdDp0ZXN0")
+        request.httpMethod = route.httpMethod().rawValue
+        
+        request.httpBody = route.body()
+        
+        // Create the URL Session
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, err) in
+            guard let res = response else {return}
+            
+            // downcast to get the http status code
+            let statusCode: Int = (res as! HTTPURLResponse).statusCode
+            
+            if let data = data {
+                completionHandler(data, statusCode)
+            }
+        }.resume()
+    }
+}
 
 
 
