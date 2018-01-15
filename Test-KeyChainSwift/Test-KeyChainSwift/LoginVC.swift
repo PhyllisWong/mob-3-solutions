@@ -30,6 +30,20 @@ class LoginVC: UIViewController {
         // make the network call here
         let user = User(username: usernameTF.text!, password: passwordTF.text!)
         
+        Networking.fetch(route: Route.userLogin(user: user)) { (data, res) in
+            // If user has already signed up
+            if res == 200 {
+                UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let successVC = storyboard.instantiateViewController(withIdentifier: "SuccessNav")
+                
+                DispatchQueue.main.async {
+                    let appDelegate = UIApplication.shared.delegate!
+                    appDelegate.window??.rootViewController = successVC
+                    appDelegate.window??.makeKeyAndVisible()
+                }
+            }
+        }
         
     }
     

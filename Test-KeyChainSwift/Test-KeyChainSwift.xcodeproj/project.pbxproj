@@ -10,6 +10,9 @@
 		B951F02620091840006E7DE3 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951F02520091840006E7DE3 /* UserModel.swift */; };
 		B951F02820091DC3006E7DE3 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B951F02720091DC3006E7DE3 /* Networking.swift */; };
 		B9CEC8AA200D541B00AFD049 /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9CEC8A9200D541B00AFD049 /* KeychainSwift.framework */; };
+		B9CEC8AD200D57F100AFD049 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CEC8AC200D57F100AFD049 /* SignupVC.swift */; };
+		B9CEC8AF200D5FD400AFD049 /* SuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CEC8AE200D5FD400AFD049 /* SuccessVC.swift */; };
+		B9D1175D200D606F00C365DA /* AlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D1175C200D606F00C365DA /* AlertVC.swift */; };
 		B9F385EA200827C1004287EB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F385E9200827C1004287EB /* AppDelegate.swift */; };
 		B9F385EC200827C1004287EB /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9F385EB200827C1004287EB /* LoginVC.swift */; };
 		B9F385EF200827C1004287EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9F385ED200827C1004287EB /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 		B951F02520091840006E7DE3 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B951F02720091DC3006E7DE3 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		B9CEC8A9200D541B00AFD049 /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
+		B9CEC8AC200D57F100AFD049 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		B9CEC8AE200D5FD400AFD049 /* SuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessVC.swift; sourceTree = "<group>"; };
+		B9D1175C200D606F00C365DA /* AlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertVC.swift; sourceTree = "<group>"; };
 		B9F385E6200827C1004287EB /* Test-KeyChainSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Test-KeyChainSwift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9F385E9200827C1004287EB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B9F385EB200827C1004287EB /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -71,7 +77,10 @@
 			isa = PBXGroup;
 			children = (
 				B9F385E9200827C1004287EB /* AppDelegate.swift */,
+				B9D1175C200D606F00C365DA /* AlertVC.swift */,
 				B9F385EB200827C1004287EB /* LoginVC.swift */,
+				B9CEC8AC200D57F100AFD049 /* SignupVC.swift */,
+				B9CEC8AE200D5FD400AFD049 /* SuccessVC.swift */,
 				B951F02520091840006E7DE3 /* UserModel.swift */,
 				B951F02720091DC3006E7DE3 /* Networking.swift */,
 				B9F385ED200827C1004287EB /* Main.storyboard */,
@@ -174,9 +183,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9F385EC200827C1004287EB /* LoginVC.swift in Sources */,
+				B9CEC8AD200D57F100AFD049 /* SignupVC.swift in Sources */,
 				B951F02620091840006E7DE3 /* UserModel.swift in Sources */,
 				B9F385EA200827C1004287EB /* AppDelegate.swift in Sources */,
+				B9CEC8AF200D5FD400AFD049 /* SuccessVC.swift in Sources */,
 				B951F02820091DC3006E7DE3 /* Networking.swift in Sources */,
+				B9D1175D200D606F00C365DA /* AlertVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

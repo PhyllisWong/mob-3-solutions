@@ -16,6 +16,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let userLoggedIn = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+        var rootViewController: UIViewController?
+        UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+        
+        if userLoggedIn == true {
+            // If user is loged in, set the rootVC to the TripsVC
+            rootViewController = storyboard.instantiateViewController(withIdentifier: "SuccessNav")
+        } else {
+            rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+        }
+        
+        self.window?.rootViewController = rootViewController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
