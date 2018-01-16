@@ -7,14 +7,20 @@
 //
 
 import Foundation
+import KeychainSwift
+
 
 struct User {
     let username: String
     let password: String
+    var keychain = KeychainSwift()
     
     init(username: String, password: String) {
         self.username = username
         self.password = password
+        let credential = BasicAuth.generateBasicAuthHeader(username: self.username, password: self.password)
+        
+        self.keychain.set(credential, forKey: "credential")
     }
 }
 

@@ -10,7 +10,13 @@ import UIKit
 
 struct AlertViewController {
     static func showAlert() -> UIAlertController {
-        let alertController = UIAlertController(title: "Error", message: "Wrong email or password", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: "Wrong email / password", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alertController
+    }
+    
+    static func showSignupAlert() -> UIAlertController {
+        let alertController = UIAlertController(title: "Error", message: "Sign up for a user account", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alertController
     }

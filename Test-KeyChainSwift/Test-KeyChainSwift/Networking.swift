@@ -7,7 +7,7 @@
 //
 
 import Foundation
-// import KeychainSwift
+import KeychainSwift
 
 
 /*
@@ -89,12 +89,27 @@ enum Route {
     }
 }
 
+struct BasicAuth {
+    static func generateBasicAuthHeader(username: String, password: String) -> String {
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData: Data = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString(options: .init(rawValue: 0))
+        let authHeaderString = "Basic \(base64LoginString)"
+        
+        return authHeaderString
+    }
+}
+
 
 class Networking {
     
     // networking method
     
     static func fetch(route: Route, completionHandler: @escaping(Data, Int) -> Void) {
+        
+        // Get the user credentials
+        let keychain = KeychainSwift()
+        let credential = keychain.get("credential")
         
         // Set the URL string and append the path
         let baseURL = "http://127.0.0.1:5000/"
@@ -106,11 +121,16 @@ class Networking {
         var components = URLComponents(url: requestURLString!, resolvingAgainstBaseURL: true)
         components?.queryItems = route.urlParams()
         
+        // Create the request...add the headers and the token
         var request = URLRequest(url: components!.url!)
-        request.allHTTPHeaderFields = route.header(token: "Basic dGVzdDp0ZXN0")
-        request.httpMethod = route.httpMethod().rawValue
         
+        if let credential = credential {
+            request.allHTTPHeaderFields = route.header(token: credential)
+        }
+        
+        request.httpMethod = route.httpMethod().rawValue
         request.httpBody = route.body()
+        
         
         // Create the URL Session
         let session = URLSession.shared

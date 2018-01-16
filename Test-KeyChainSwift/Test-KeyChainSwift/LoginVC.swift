@@ -26,6 +26,31 @@ class LoginVC: UIViewController {
         self.passwordTF.delegate = self
     }
     
+    
+    // User presses the signup button
+    @IBAction func didPressSignup(_ sender: UIButton) {
+        let user = User(username: usernameTF.text!, password: passwordTF.text!)
+        
+        Networking.fetch(route: Route.userSignup(user: user)) { (data, res) in
+            if res == 200 {
+                UserDefaults.standard.set(true, forKey: "isUserLoggedIn")
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+                
+                DispatchQueue.main.async {
+                    let appDelegate = UIApplication.shared.delegate!
+                    appDelegate.window??.rootViewController = loginVC
+                    appDelegate.window??.makeKeyAndVisible()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.present(AlertViewController.showSignupAlert(), animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    // User pressed the Login button
     @IBAction func didPressLogin(_ sender: Any) {
         // make the network call here
         let user = User(username: usernameTF.text!, password: passwordTF.text!)
@@ -42,20 +67,13 @@ class LoginVC: UIViewController {
                     appDelegate.window??.rootViewController = successVC
                     appDelegate.window??.makeKeyAndVisible()
                 }
+            } else {
+                DispatchQueue.main.async {
+                    self.present(AlertViewController.showAlert(), animated: true, completion: nil)
+                }
             }
         }
         
-    }
-    
-    struct BasicAuth {
-        static func generateBasicAuthHeader(username: String, password: String) -> String {
-            let loginString = String(format: "%@:%@", username, password)
-            let loginData: Data = loginString.data(using: String.Encoding.utf8)!
-            let base64LoginString = loginData.base64EncodedString(options: .init(rawValue: 0))
-            let authHeaderString = "Basic \(base64LoginString)"
-            
-            return authHeaderString
-        }
     }
     
 

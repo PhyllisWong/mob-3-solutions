@@ -42,5 +42,43 @@ class SuccessVC: UIViewController {
     @IBAction func stopButtonPressed(_ sender: UIButton) {
     }
     
+    @IBAction func logoutPressed(_ sender: UIBarButtonItem) {
+        
+        var window: UIWindow?
+        // Override point for customization after application launch.
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let userLoggedIn = UserDefaults.standard.bool(forKey: "isUserLoggedIn")
+        var rootViewController: UIViewController?
+        UserDefaults.standard.set(false, forKey: "isUserLoggedIn")
+        
+        rootViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+        
+        window?.rootViewController = rootViewController
+        window?.makeKeyAndVisible()
+
+    }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

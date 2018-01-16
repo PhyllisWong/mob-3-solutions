@@ -86,7 +86,7 @@
                                             <color key="titleColor" red="0.98031669860000004" green="0.97607129810000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="cya-x2-sRg" kind="show" id="eH8-OW-BxZ"/>
+                                            <action selector="didPressSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eSn-hw-EvJ"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="enter username &amp; password or signup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K40-Zt-ADS">
@@ -281,7 +281,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2VR-8U-vXN"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WCr-od-Y6I"/>
+                    <navigationItem key="navigationItem" id="WCr-od-Y6I">
+                        <barButtonItem key="leftBarButtonItem" title="logout" id="5Ny-R0-Fhc">
+                            <connections>
+                                <action selector="logoutPressed:" destination="fMF-CV-sHD" id="vVf-lL-Pah"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ayo-nf-HYH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
