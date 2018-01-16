@@ -209,17 +209,11 @@
         <!--SuccessVC-->
         <scene sceneID="msz-3w-zNc">
             <objects>
-                <viewController storyboardIdentifier="SuccessVC" title="SuccessVC" id="fMF-CV-sHD" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SuccessVC" title="SuccessVC" id="fMF-CV-sHD" customClass="SuccessVC" customModule="Test_KeyChainSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nI0-w9-JMn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you have successfully logged in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alo-wT-IF4">
-                                <rect key="frame" x="66.5" y="64" width="242.5" height="603"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="xn8-CU-gJe">
                                 <rect key="frame" x="57.5" y="164" width="260" height="160"/>
                                 <subviews>
@@ -233,6 +227,9 @@
                                         <state key="normal" title="play">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="playButtonPressed:" destination="fMF-CV-sHD" eventType="touchUpInside" id="kDO-4X-FJD"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QSn-0h-uoh">
                                         <rect key="frame" x="0.0" y="55" width="260" height="50"/>
@@ -244,6 +241,9 @@
                                         <state key="normal" title="stop">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="stopButtonPressed:" destination="fMF-CV-sHD" eventType="touchUpInside" id="JrV-5P-V22"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1MX-UC-rKO">
                                         <rect key="frame" x="0.0" y="110" width="260" height="50"/>
@@ -262,6 +262,12 @@
                                     <constraint firstAttribute="height" constant="160" id="yxk-Ol-lc4"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you have successfully logged in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="alo-wT-IF4">
+                                <rect key="frame" x="66" y="64" width="242.5" height="603"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
