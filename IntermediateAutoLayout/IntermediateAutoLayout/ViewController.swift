@@ -13,8 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.title = "Intermediate Auto-Layout"
-        self.view.backgroundColor = UIColor.gray
+//        self.title = "Intermediate Auto-Layout"
     }
 
     override func didReceiveMemoryWarning() {
