@@ -12,6 +12,10 @@
 		B9B920A720115A5E0012CB3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B920A520115A5E0012CB3D /* Main.storyboard */; };
 		B9B920A920115A5E0012CB3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B920A820115A5E0012CB3D /* Assets.xcassets */; };
 		B9B920AC20115A5E0012CB3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9B920AA20115A5E0012CB3D /* LaunchScreen.storyboard */; };
+		B9B920BA201161E50012CB3D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B920B8201161E50012CB3D /* TableViewCell.swift */; };
+		B9B920BB201161E50012CB3D /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B920B9201161E50012CB3D /* TableViewCell.xib */; };
+		B9B920C3201168A20012CB3D /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B920C1201168A20012CB3D /* DetailVC.swift */; };
+		B9B920C4201168A20012CB3D /* DetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9B920C2201168A20012CB3D /* DetailVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		B9B920A820115A5E0012CB3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9B920AB20115A5E0012CB3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B9B920AD20115A5E0012CB3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B9B920B8201161E50012CB3D /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		B9B920B9201161E50012CB3D /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		B9B920C1201168A20012CB3D /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		B9B920C2201168A20012CB3D /* DetailVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,8 @@
 		B9B920A020115A5E0012CB3D /* CustomNib */ = {
 			isa = PBXGroup;
 			children = (
+				B9B920BC2011680B0012CB3D /* DetailVC */,
+				B9B920B32011609A0012CB3D /* Cell */,
 				B9B920A120115A5E0012CB3D /* AppDelegate.swift */,
 				B9B920A320115A5E0012CB3D /* ViewController.swift */,
 				B9B920A520115A5E0012CB3D /* Main.storyboard */,
@@ -62,6 +72,24 @@
 				B9B920AD20115A5E0012CB3D /* Info.plist */,
 			);
 			path = CustomNib;
+			sourceTree = "<group>";
+		};
+		B9B920B32011609A0012CB3D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B9B920B8201161E50012CB3D /* TableViewCell.swift */,
+				B9B920B9201161E50012CB3D /* TableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B9B920BC2011680B0012CB3D /* DetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				B9B920C1201168A20012CB3D /* DetailVC.swift */,
+				B9B920C2201168A20012CB3D /* DetailVC.xib */,
+			);
+			path = DetailVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,8 +152,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B920AC20115A5E0012CB3D /* LaunchScreen.storyboard in Resources */,
+				B9B920BB201161E50012CB3D /* TableViewCell.xib in Resources */,
 				B9B920A920115A5E0012CB3D /* Assets.xcassets in Resources */,
 				B9B920A720115A5E0012CB3D /* Main.storyboard in Resources */,
+				B9B920C4201168A20012CB3D /* DetailVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +166,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9B920BA201161E50012CB3D /* TableViewCell.swift in Sources */,
+				B9B920C3201168A20012CB3D /* DetailVC.swift in Sources */,
 				B9B920A420115A5E0012CB3D /* ViewController.swift in Sources */,
 				B9B920A220115A5E0012CB3D /* AppDelegate.swift in Sources */,
 			);
