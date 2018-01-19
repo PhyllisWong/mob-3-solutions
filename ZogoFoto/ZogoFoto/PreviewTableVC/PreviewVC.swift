@@ -1,20 +1,23 @@
 //
-//  ViewController.swift
+//  PreviewVC.swift
 //  ZogoFoto
 //
-//  Created by Phyllis Wong on 1/17/18.
+//  Created by djchai on 1/18/18.
 //  Copyright © 2018 Phyllis Wong. All rights reserved.
 //
 
 import UIKit
-import Zip
-import Alamofire
 
-class ImagePreviewVC: UIViewController {
-
+class PreviewVC: UIViewController {
+    
+    @IBOutlet var tableView: UIView!
+    
+    var titles = ["collectionTitlesHere"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,4 +27,3 @@ class ImagePreviewVC: UIViewController {
 
 
 }
-
