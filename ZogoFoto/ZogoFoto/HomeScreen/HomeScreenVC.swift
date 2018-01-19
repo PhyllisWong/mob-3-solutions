@@ -40,7 +40,6 @@ class HomeScreenVC: UIViewController {
         }
     }
     
-
-
+    // Create an instance of UIViewController, and then use navigationController to push by name
 }
 
