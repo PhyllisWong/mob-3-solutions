@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="71" id="KGk-i7-Jjw" customClass="lionCell" customModule="IntermediateAutoLayout" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="323" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="323" height="70.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3h-3o-cb6">
+                        <rect key="frame" x="105" y="11" width="66" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="253" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XNU-VO-JvF">
+                        <rect key="frame" x="99" y="31" width="215" height="33"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="215" id="RED-UE-UUc"/>
+                        </constraints>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1" translatesAutoresizingMaskIntoConstraints="NO" id="lYp-EH-GWo">
+                        <rect key="frame" x="0.0" y="0.0" width="96" height="75"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="XNU-VO-JvF" secondAttribute="bottom" constant="-4" id="DaK-Ub-e2P"/>
+                    <constraint firstAttribute="bottom" secondItem="lYp-EH-GWo" secondAttribute="bottom" constant="-4.5" id="KLm-ee-qpa"/>
+                    <constraint firstItem="p3h-3o-cb6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="NH4-Gv-DIr"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="XNU-VO-JvF" secondAttribute="trailing" constant="-7" id="QkK-X8-VKs"/>
+                    <constraint firstItem="XNU-VO-JvF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="ReS-x4-E8A"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="p3h-3o-cb6" secondAttribute="trailing" constant="137" id="dL5-aK-gIb"/>
+                    <constraint firstItem="XNU-VO-JvF" firstAttribute="leading" secondItem="lYp-EH-GWo" secondAttribute="trailing" constant="3" id="gA8-Vs-yI1"/>
+                    <constraint firstItem="lYp-EH-GWo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="glO-VI-B5m"/>
+                    <constraint firstItem="lYp-EH-GWo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qm1-JT-5Mj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="68.5" y="29.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="1" width="525" height="350"/>
+    </resources>
+</document>
