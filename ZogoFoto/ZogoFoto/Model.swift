@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Image: Decodable {
+class ImageCollection: Decodable {
     let collection_name: String
     let zipped_images_url: String
 }
