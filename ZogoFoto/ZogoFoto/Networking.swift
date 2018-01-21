@@ -73,6 +73,7 @@ extension Networking {
             
             try Zip.unzipFile(url, destination: cacheFolder, overwrite: true, password: nil) //Unzip
             
+            // MARK: Strip the folder name from the URL.zip
             return cacheFolder
             
             
