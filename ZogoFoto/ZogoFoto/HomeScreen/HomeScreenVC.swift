@@ -25,6 +25,7 @@ class HomeScreenVC: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         Networking.getZipUrls()
+        let networking = Networking()
         
     }
     

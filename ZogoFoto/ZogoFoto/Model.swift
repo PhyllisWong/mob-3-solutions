@@ -7,11 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
-
-class ImageCollection: Decodable {
-    let collection_name: String
-    let zipped_images_url: String
+struct ImageCollection: Decodable {
+    
+    let title: String
+    let zipUrl: URL
+    var previewImage: URL? = nil
+    var contentUrl: URL? = nil
+    
+    enum CodingKeys: String, CodingKey {
+        case title = "collection_name"
+        case zipUrl = "zipped_images_url"
+        
+    }
 }
 
 
