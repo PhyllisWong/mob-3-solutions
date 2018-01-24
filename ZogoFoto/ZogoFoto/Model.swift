@@ -7,20 +7,36 @@
 //
 
 import Foundation
-import UIKit
 
-struct ImageCollection: Decodable {
+
+struct ImageCollection {
     
-    let title: String
-    let zipUrl: URL
-    var previewImage: URL? = nil
-    var contentUrl: URL? = nil
+    let collectionName: String
+    let zippedImagesUrl: String
+    var previewImage: [URL]?
+    var thumbnail: String?
     
-    enum CodingKeys: String, CodingKey {
-        case title = "collection_name"
-        case zipUrl = "zipped_images_url"
-        
+    init(collectionName: String, zippedImagesUrl: String) {
+        self.collectionName = collectionName
+        self.zippedImagesUrl = zippedImagesUrl
     }
 }
 
+extension ImageCollection: Decodable {
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case collectionName = "collection_name"
+        case zip_url = "zipped_images_url"
+        
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let collectionName = try container.decode(String.self, forKey: .collectionName)
+        let zip_url = try container.decode(String.self, forKey: .zip_url)
+        
+        self.init(collectionName: collectionName, zippedImagesUrl: zip_url)
+    }
+}
 

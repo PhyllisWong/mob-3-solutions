@@ -11,6 +11,10 @@ import UIKit
 
 class HomeScreenVC: UIViewController {
     
+    
+    @IBAction func previewWasPressed(_ sender: UIButton) {
+    }
+    
     var imageCollections = [ImageCollection]()
 
     override func viewDidLoad() {
@@ -21,12 +25,6 @@ class HomeScreenVC: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        Networking.getZipUrls()
-        let networking = Networking()
-        
     }
     
 
