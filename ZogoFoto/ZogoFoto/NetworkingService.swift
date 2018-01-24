@@ -9,7 +9,7 @@
 import Foundation
 import Zip
 
-class NetworkingService {
+class Networking {
     
     
     static func fetchRequest(url: String, completion: @escaping (Data) -> Void) {
@@ -34,7 +34,7 @@ class NetworkingService {
             if let url = url {
                 print(url)
                 Zip.addCustomFileExtension("tmp")
-                var caches = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
+                let caches = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
                 print(caches)
                 let _ = try? Zip.unzipFile(url, destination: URL(string:caches)!, overwrite: false, password: nil)
                 completion(caches)

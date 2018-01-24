@@ -85,7 +85,6 @@
 				B9B9208E20100DD90012CB3D /* Zip.framework */,
 				B90B9BB420100C3000EE501D /* ZogoFoto */,
 				B90B9BB320100C3000EE501D /* Products */,
-				B966F08720129BA6002E7760 /* NetworkingService.swift */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,13 +102,14 @@
 				B966F0822012987F002E7760 /* images.json */,
 				B90B9BB520100C3000EE501D /* AppDelegate.swift */,
 				B966F08420129994002E7760 /* HomeScreen */,
+				B9B920C5201176D80012CB3D /* PreviewTableVC */,
 				B9B920D320117A5A0012CB3D /* CollectionView */,
 				B9B920CA2011775A0012CB3D /* Cell */,
-				B9B920C5201176D80012CB3D /* PreviewTableVC */,
 				B90B9BBC20100C3000EE501D /* Assets.xcassets */,
 				B90B9BBE20100C3000EE501D /* LaunchScreen.storyboard */,
 				B90B9BC120100C3000EE501D /* Info.plist */,
 				B966F085201299FB002E7760 /* Model.swift */,
+				B966F08720129BA6002E7760 /* NetworkingService.swift */,
 			);
 			path = ZogoFoto;
 			sourceTree = "<group>";

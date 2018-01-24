@@ -15,11 +15,13 @@ class HomeScreenVC: UIViewController {
     @IBAction func previewWasPressed(_ sender: UIButton) {
     }
     
-    var imageCollections = [ImageCollection]()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+//        self.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
+//        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.estimatedRowHeight = 300
+       
     }
 
     override func didReceiveMemoryWarning() {
