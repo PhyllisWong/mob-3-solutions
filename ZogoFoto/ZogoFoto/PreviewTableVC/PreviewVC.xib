@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PreviewVC" customModule="ZogoFoto" customModuleProvider="target">
             <connections>
+                <outlet property="contentView" destination="i5M-Pr-FkT" id="DF2-Bu-Pxt"/>
                 <outlet property="tableView" destination="jqC-HM-H51" id="d4e-v1-XDr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

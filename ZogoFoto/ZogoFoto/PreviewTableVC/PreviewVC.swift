@@ -4,19 +4,46 @@
 //
 //  Created by djchai on 1/18/18.
 //  Copyright © 2018 Phyllis Wong. All rights reserved.
-//
+//  Code credit: Elmer Astudillo
 
 import UIKit
 
 class PreviewVC: UIViewController {
     
    
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
     var imageCollections = [ImageCollection]()
     
+    override init() {
+        
+        super.init()
+        commonInit()
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        Bundle.main.loadNibNamed("PreviewVC", owner: self, options: nil)
+        self.view.addSubview(contentView)
+        contentView.frame = self.bounds
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
 
         // Do any additional setup after loading the view.
         Networking.fetchRequest(url: "https://s3-us-west-2.amazonaws.com/mob3/image_collection.json") { (data) in
