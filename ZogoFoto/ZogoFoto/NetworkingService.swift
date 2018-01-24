@@ -25,19 +25,27 @@ class Networking {
         }.resume()
     }
     
-    static func downloadRequest(url: String, completion: @escaping (String?) -> Void) {
+    static func downloadRequest(imageCollection: ImageCollection, completion: @escaping (_ cachesURL: URL) -> Void) {
         let session = URLSession.shared
-        let url = URL(string: url)
-        let urlRequest = URLRequest(url: url!)
+        let url = imageCollection.zippedImagesUrl
+        let urlRequest = URLRequest(url: url)
         
         session.downloadTask(with: urlRequest) { (url, response, error) in
             if let url = url {
                 print(url)
+                
                 Zip.addCustomFileExtension("tmp")
-                let caches = (NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0])
-                print(caches)
-                let _ = try? Zip.unzipFile(url, destination: URL(string:caches)!, overwrite: false, password: nil)
-                completion(caches)
+                
+                let fm = FileManager.default
+                let cacheURL = try! fm.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                print(cacheURL)
+                let _ = try? Zip.unzipFile(
+                    url,
+                    destination: cacheURL,
+                    overwrite: false,
+                    password: nil
+                )
+                completion(cacheURL)
             }
         }.resume()
     }

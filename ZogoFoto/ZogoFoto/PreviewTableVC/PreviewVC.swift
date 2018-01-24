@@ -4,7 +4,7 @@
 //
 //  Created by djchai on 1/18/18.
 //  Copyright © 2018 Phyllis Wong. All rights reserved.
-//  Code credit: Elmer Astudillo
+//  Networking Code Credit: Elmer Astudillo
 
 import UIKit
 
@@ -16,70 +16,72 @@ class PreviewVC: UIViewController {
     
     var imageCollections = [ImageCollection]()
     
-    override init() {
-        
-        super.init()
-        commonInit()
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    
-    private func commonInit() {
-        Bundle.main.loadNibNamed("PreviewVC", owner: self, options: nil)
-        self.view.addSubview(contentView)
-        contentView.frame = self.bounds
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+//        let tableViewCell = TableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "tableViewCell")
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: "tableViewCell")
 
         // Do any additional setup after loading the view.
         Networking.fetchRequest(url: "https://s3-us-west-2.amazonaws.com/mob3/image_collection.json") { (data) in
             if let imageArray = try? JSONDecoder().decode([ImageCollection].self, from: data) {
-                self.imageCollections = imageArray
+                
+                DispatchQueue.main.async {
+                    self.imageCollections = imageArray
+                    self.unzip()
+                }
+                
             } else { print("BAD CODE!") }
-            
-            for i in 0..<self.imageCollections.count {
-                print(self.imageCollections[i].zippedImagesUrl)
-                Networking.downloadRequest(url: self.imageCollections[i].zippedImagesUrl, completion: { (url) in
-                    var path = url
-                    if self.imageCollections[i].collectionName == "Forests" {
-                        path?.append(contentsOf: "/forest")
-                        guard let newPath = path else {return}
-                        let pathURL = URL(string: newPath)
-                        // Getting the contents of the directory specifically anything with a path extnesion png
-                        // Using subcript to get the first value
-                        // Getting the thumbail by filtering
-                        
-                        let directory = try? FileManager.default.contentsOfDirectory(at: pathURL!, includingPropertiesForKeys: nil, options: []).filter{$0.pathExtension == "png"}[0]
-                        let galleryDirectory = try? FileManager.default.contentsOfDirectory(at: pathURL!, includingPropertiesForKeys: nil, options: []).filter{$0.pathExtension == "jpeg" || $0.pathExtension == "jpg"}
-                        guard let galleryDir = galleryDirectory else {return}
-                        guard let trueDirectory = directory else {return}
-                        self.imageCollections[i].thumbnail = String(describing:trueDirectory)
-                        self.imageCollections[i].previewImage = galleryDir
-                        
-                        print(self.imageCollections[i].previewImage!)
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    }
-                })
-            }
+
         }
     }
 
+    func unzip()  {
+        for i in 0..<self.imageCollections.count {
+            print(self.imageCollections[i].zippedImagesUrl)
+            
+            Networking.downloadRequest(
+                imageCollection: self.imageCollections[i],
+                completion: { cachesURL in
+                    
+                    
+                    // 1. Get folder name
+                    let folderName = self.imageCollections[i].zippedImagesUrl.deletingPathExtension().lastPathComponent
+                    let fullUrl = cachesURL.appendingPathComponent(folderName)
+                    
+                    // Update unzipped folder url
+                    self.imageCollections[i].unzippedFolderURL = fullUrl
+            })
+        }
+
+
+        print(self.imageCollections)
+        self.extractPreview()
+    }
+    
+    func extractPreview()  {
+        for i in 0..<self.imageCollections.count {
+            guard let previewImage = try! FileManager.default.contentsOfDirectory(at: self.imageCollections[i].unzippedFolderURL!, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                .filter({ (url) -> Bool in
+                url.deletingPathExtension().lastPathComponent == "_preview"
+            }).first else {return}
+            
+            self.imageCollections[i].previewImage = previewImage
+        }
+    }
+    // Called when download and unzipping of 1 image is done
+    // And returns the caches directory
+//    func updateImageCollection(with cachesURL: URL, zippedImageCollection: ImageCollection) -> URL {
+//        guard let unzippedFolder = try! FileManager.default.contentsOfDirectory(at: cachesURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+//            .filter({ (url) -> Bool in
+//            return !url.lastPathComponent.contains(zippedImageCollection.zippedImagesUrl.lastPathComponent)
+//            }).first else {return URL(string: "www.google.com")!}
+//
+//        return unzippedFolder
+//    }
+//
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -111,9 +113,7 @@ extension PreviewVC: UITableViewDataSource, UITableViewDelegate {
         let row = indexPath.row
         let collection = self.imageCollections[row]
         print(collection)
-        
-        // FIXME: how do I register a xib?
-        // let imageCollectionsView =
+
     }
 }
 

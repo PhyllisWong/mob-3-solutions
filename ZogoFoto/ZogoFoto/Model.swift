@@ -12,11 +12,12 @@ import Foundation
 struct ImageCollection {
     
     let collectionName: String
-    let zippedImagesUrl: String
-    var previewImage: [URL]?
+    let zippedImagesUrl: URL
+    var previewImage: URL?
     var thumbnail: String?
+    var unzippedFolderURL: URL?
     
-    init(collectionName: String, zippedImagesUrl: String) {
+    init(collectionName: String, zippedImagesUrl: URL) {
         self.collectionName = collectionName
         self.zippedImagesUrl = zippedImagesUrl
     }
@@ -34,7 +35,7 @@ extension ImageCollection: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let collectionName = try container.decode(String.self, forKey: .collectionName)
-        let zip_url = try container.decode(String.self, forKey: .zip_url)
+        let zip_url = try container.decode(URL.self, forKey: .zip_url)
         
         self.init(collectionName: collectionName, zippedImagesUrl: zip_url)
     }

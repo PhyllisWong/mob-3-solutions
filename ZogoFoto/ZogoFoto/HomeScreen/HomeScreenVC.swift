@@ -18,14 +18,18 @@ class HomeScreenVC: UIViewController {
     @IBAction func previewWasPressed(_ sender: UIButton) {
         //FIXME: add this code
         // Navigate to a custom xib view with a tableview
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "PreviewVC") as! PreviewVC
-        self.present(nextViewController, animated:true, completion:nil)
+      
+        let previewVC = PreviewVC(nibName: "PreviewVC", bundle: Bundle.main)
+
+        self.present(previewVC, animated:true, completion:nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // MARK: moved to next View Controller
+        // FIXME: remove this commented code once tableview navigation is set up
+        
         // Do any additional setup after loading the view, typically from a nib.
 //        self.register(UINib(nibName: cellIdentifier, bundle: nil), forCellReuseIdentifier: cellIdentifier)
 //        tableView.rowHeight = UITableViewAutomaticDimension
