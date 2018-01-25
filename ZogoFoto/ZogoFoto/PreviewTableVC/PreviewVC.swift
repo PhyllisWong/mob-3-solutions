@@ -30,58 +30,65 @@ class PreviewVC: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.imageCollections = imageArray
-                    self.unzip()
+                    
+                    // This allows the dispatch queue to controll the threads
+                    let dispatchGroup = DispatchGroup()
+                    
+                    self.unzip(dispatchGroup: dispatchGroup)
+                    
+                    dispatchGroup.notify(queue: .main, execute: {
+                        self.extractPreview()
+                    })
                 }
                 
-            } else { print("BAD CODE!") }
+            } else { print("NOPE") }
 
         }
     }
 
-    func unzip()  {
+    func unzip(dispatchGroup: DispatchGroup)  {
         for i in 0..<self.imageCollections.count {
             print(self.imageCollections[i].zippedImagesUrl)
-            
+            dispatchGroup.enter()
             Networking.downloadRequest(
                 imageCollection: self.imageCollections[i],
                 completion: { cachesURL in
-                    
                     
                     // 1. Get folder name
                     let folderName = self.imageCollections[i].zippedImagesUrl.deletingPathExtension().lastPathComponent
                     let fullUrl = cachesURL.appendingPathComponent(folderName)
                     
+                    print(fullUrl)
+                    
                     // Update unzipped folder url
-                    self.imageCollections[i].unzippedFolderURL = fullUrl
+                    self.imageCollections[i].unzippedFolderURL = fullUrl as URL
+                    print(self.imageCollections)
+                    dispatchGroup.leave()
             })
         }
 
-
-        print(self.imageCollections)
-        self.extractPreview()
     }
     
     func extractPreview()  {
+//        let dispatchGroup = DispatchGroup()
         for i in 0..<self.imageCollections.count {
-            guard let previewImage = try! FileManager.default.contentsOfDirectory(at: self.imageCollections[i].unzippedFolderURL!, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-                .filter({ (url) -> Bool in
-                url.deletingPathExtension().lastPathComponent == "_preview"
-            }).first else {return}
+//            print(self.imageCollections[i].unzippedFolderURL!)
             
-            self.imageCollections[i].previewImage = previewImage
+//            dispatchGroup.enter()
+            if let unzippedURL = self.imageCollections[i].unzippedFolderURL {
+                guard let previewImage = try! FileManager.default.contentsOfDirectory(at: unzippedURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                    .filter({ (url) -> Bool in
+                    url.deletingPathExtension().lastPathComponent == "_preview"
+                }).first else {return}
+                self.imageCollections[i].previewImage = previewImage
+            } else {
+                print("nil found when trying to get unzipped URL")
+            }
         }
+        
+//        dispatchGroup.leave()
     }
-    // Called when download and unzipping of 1 image is done
-    // And returns the caches directory
-//    func updateImageCollection(with cachesURL: URL, zippedImageCollection: ImageCollection) -> URL {
-//        guard let unzippedFolder = try! FileManager.default.contentsOfDirectory(at: cachesURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
-//            .filter({ (url) -> Bool in
-//            return !url.lastPathComponent.contains(zippedImageCollection.zippedImagesUrl.lastPathComponent)
-//            }).first else {return URL(string: "www.google.com")!}
-//
-//        return unzippedFolder
-//    }
-//
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
