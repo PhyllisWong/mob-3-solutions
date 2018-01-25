@@ -18,11 +18,18 @@ class PreviewVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = 80
         
-//        let tableViewCell = TableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "tableViewCell")
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: "tableViewCell")
+        // Create UINib for TableViewCell
+        // Register Nib with TableView and its reuse identifier
+        let nib = UINib(nibName: "TableViewCell", bundle: nil)
+
+        tableView.register(nib, forCellReuseIdentifier: "tableViewCell")
+//        tableView
+//            .register(TableViewCell.self, forCellReuseIdentifier: "tableViewCell")
 
         // Do any additional setup after loading the view.
         Networking.fetchRequest(url: "https://s3-us-west-2.amazonaws.com/mob3/image_collection.json") { (data) in
@@ -38,6 +45,7 @@ class PreviewVC: UIViewController {
                     
                     dispatchGroup.notify(queue: .main, execute: {
                         self.extractPreview()
+                        self.tableView.reloadData()
                     })
                 }
                 
@@ -48,7 +56,7 @@ class PreviewVC: UIViewController {
 
     func unzip(dispatchGroup: DispatchGroup)  {
         for i in 0..<self.imageCollections.count {
-            print(self.imageCollections[i].zippedImagesUrl)
+//            print(self.imageCollections[i].zippedImagesUrl)
             dispatchGroup.enter()
             Networking.downloadRequest(
                 imageCollection: self.imageCollections[i],
@@ -56,12 +64,12 @@ class PreviewVC: UIViewController {
                     
                     // 1. Get folder name
                     let folderName = self.imageCollections[i].zippedImagesUrl.deletingPathExtension().lastPathComponent
-                    let fullUrl = cachesURL.appendingPathComponent(folderName)
-                    
-                    print(fullUrl)
+                    // Replace occurences of + with " "
+                    let sanitizedFolderName = folderName.replacingOccurrences(of: "+", with: " ")
+                    let fullUrl = cachesURL.appendingPathComponent(sanitizedFolderName)
                     
                     // Update unzipped folder url
-                    self.imageCollections[i].unzippedFolderURL = fullUrl as URL
+                    self.imageCollections[i].unzippedFolderURL = fullUrl
                     print(self.imageCollections)
                     dispatchGroup.leave()
             })
@@ -70,31 +78,21 @@ class PreviewVC: UIViewController {
     }
     
     func extractPreview()  {
-//        let dispatchGroup = DispatchGroup()
+
         for i in 0..<self.imageCollections.count {
-//            print(self.imageCollections[i].unzippedFolderURL!)
-            
-//            dispatchGroup.enter()
             if let unzippedURL = self.imageCollections[i].unzippedFolderURL {
                 guard let previewImage = try! FileManager.default.contentsOfDirectory(at: unzippedURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
                     .filter({ (url) -> Bool in
                     url.deletingPathExtension().lastPathComponent == "_preview"
                 }).first else {return}
+ 
                 self.imageCollections[i].previewImage = previewImage
             } else {
                 print("nil found when trying to get unzipped URL")
             }
         }
         
-//        dispatchGroup.leave()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
 extension PreviewVC: UITableViewDataSource, UITableViewDelegate {
@@ -111,15 +109,17 @@ extension PreviewVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let collection = self.imageCollections[row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath)
-        cell.textLabel?.text = collection.collectionName
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
+//        cell.textLabel?.text = collection.collectionName
+        cell.commonInit(collection.previewImage!, title: collection.collectionName)
+//        cell.cellViewModel = (collection.previewImage!, title: collection.collectionName)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let collection = self.imageCollections[row]
-        print(collection)
+//        print(collection)
 
     }
 }

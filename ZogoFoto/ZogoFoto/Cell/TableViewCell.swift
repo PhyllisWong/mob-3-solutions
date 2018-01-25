@@ -13,10 +13,21 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var previewImage: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+   
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,8 +36,11 @@ class TableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func commonInit(_ imageName: String, title: String) {
-        previewImage.image = UIImage(named: imageName)
+    func commonInit(_ imageName: URL, title: String) {
+        let data = try! Data(contentsOf: imageName)
+        let image = UIImage(data: data)
+
+        previewImage.image = image
         titleLabel.text = title
     }
     
