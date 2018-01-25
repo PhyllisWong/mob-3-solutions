@@ -26,10 +26,7 @@ class PreviewVC: UIViewController {
         // Create UINib for TableViewCell
         // Register Nib with TableView and its reuse identifier
         let nib = UINib(nibName: "TableViewCell", bundle: nil)
-
         tableView.register(nib, forCellReuseIdentifier: "tableViewCell")
-//        tableView
-//            .register(TableViewCell.self, forCellReuseIdentifier: "tableViewCell")
 
         // Do any additional setup after loading the view.
         Networking.fetchRequest(url: "https://s3-us-west-2.amazonaws.com/mob3/image_collection.json") { (data) in
@@ -119,7 +116,12 @@ extension PreviewVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let collection = self.imageCollections[row]
-//        print(collection)
+        print(collection)
+
+        // Create UINib for CollectionViewCell
+        
+        let collectionVC = CollectionVC(nibName: "CollectionVC", bundle: Bundle.main)
+        self.present(collectionVC, animated:true, completion:nil)
 
     }
 }
