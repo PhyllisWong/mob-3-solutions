@@ -57,10 +57,7 @@ class CollectionVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCollectionCell", for: indexPath) as! ImageCollectionCell
     
-        guard let imageURL = imageCollection?.previewImage else {
-            print("Leslie Nope")
-            return cell
-        }
+        let imageURL = imageURLS[indexPath.row]
         
         let imageData = try! Data(contentsOf: imageURL)
         let image = UIImage(data: imageData)
@@ -69,13 +66,4 @@ class CollectionVC: UICollectionViewController {
         return cell
     }
 }
-/*
-let row = indexPath.row
-let collection = self.imageCollections[row]
-let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
 
-//        cell.textLabel?.text = collection.collectionName
-cell.commonInit(collection.previewImage!, title: collection.collectionName)
-//        cell.cellViewModel = (collection.previewImage!, title: collection.collectionName)
-return cell
- */

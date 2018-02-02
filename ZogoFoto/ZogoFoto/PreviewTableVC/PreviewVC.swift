@@ -45,9 +45,7 @@ class PreviewVC: UIViewController {
                         self.tableView.reloadData()
                     })
                 }
-                
             } else { print("NOPE") }
-
         }
     }
 
@@ -71,7 +69,6 @@ class PreviewVC: UIViewController {
                     dispatchGroup.leave()
             })
         }
-
     }
     
     func extractPreview()  {
@@ -88,7 +85,6 @@ class PreviewVC: UIViewController {
                 print("nil found when trying to get unzipped URL")
             }
         }
-        
     }
 }
 
@@ -108,23 +104,18 @@ extension PreviewVC: UITableViewDataSource, UITableViewDelegate {
         let collection = self.imageCollections[row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
         
-//        cell.textLabel?.text = collection.collectionName
         cell.commonInit(collection.previewImage!, title: collection.collectionName)
-//        cell.cellViewModel = (collection.previewImage!, title: collection.collectionName)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let collection = self.imageCollections[row]
-        print(collection)
 
-        // Create UINib for CollectionViewCell
-        
         let collectionVC = CollectionVC(nibName: "CollectionVC", bundle: Bundle.main)
+        
         // 1. set collectionVC imagecollection(1) to selected collection
         collectionVC.imageCollection = collection
-        
         self.navigationController?.pushViewController(collectionVC, animated: true)
     }
 }
