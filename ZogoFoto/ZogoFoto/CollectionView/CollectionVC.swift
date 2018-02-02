@@ -12,7 +12,9 @@ private let reuseIdentifier = "Cell"
 
 class CollectionVC: UICollectionViewController {
     
-    var imageCollections = [ImageCollection]()
+    var imageCollection: ImageCollection?
+
+    var imageURLS = [URL]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,24 +22,20 @@ class CollectionVC: UICollectionViewController {
         collectionView?.delegate = self
         collectionView?.dataSource = self
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
+        
+        // 2. An array of all images in imageCollection above, taken from file manager
+        // look up file manager . contents of directory will give you an array of URLs
+        // which are the urls to all the files in the /forest or /swimming etc.. folder
+        let filemanager = FileManager.default
+        imageURLS = try! filemanager.contentsOfDirectory(at: imageCollection!.unzippedFolderURL!, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+        
+        
+        collectionView?.reloadData()
         
         // Register Nib with CollectionView and its reuse identifier
         let nib = UINib(nibName: "ImageCollectionCell", bundle: nil)
-        collectionView!.register(nib, forCellWithReuseIdentifier: "imageCollectionView")
-
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        collectionView!.register(nib, forCellWithReuseIdentifier: "imageCollectionCell")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 
     // MARK: UICollectionViewDataSource
 
@@ -49,46 +47,35 @@ class CollectionVC: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return imageCollections.count
+        return imageURLS.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 300, height: 300)
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCollectionCell", for: indexPath) as! ImageCollectionCell
     
+        guard let imageURL = imageCollection?.previewImage else {
+            print("Leslie Nope")
+            return cell
+        }
+        
+        let imageData = try! Data(contentsOf: imageURL)
+        let image = UIImage(data: imageData)
         // Configure the cell
-    
+        cell.imageView.image = image
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-    
 }
+/*
+let row = indexPath.row
+let collection = self.imageCollections[row]
+let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
+
+//        cell.textLabel?.text = collection.collectionName
+cell.commonInit(collection.previewImage!, title: collection.collectionName)
+//        cell.cellViewModel = (collection.previewImage!, title: collection.collectionName)
+return cell
+ */

@@ -107,6 +107,7 @@ extension PreviewVC: UITableViewDataSource, UITableViewDelegate {
         let row = indexPath.row
         let collection = self.imageCollections[row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "tableViewCell", for: indexPath) as! TableViewCell
+        
 //        cell.textLabel?.text = collection.collectionName
         cell.commonInit(collection.previewImage!, title: collection.collectionName)
 //        cell.cellViewModel = (collection.previewImage!, title: collection.collectionName)
@@ -121,8 +122,10 @@ extension PreviewVC: UITableViewDataSource, UITableViewDelegate {
         // Create UINib for CollectionViewCell
         
         let collectionVC = CollectionVC(nibName: "CollectionVC", bundle: Bundle.main)
-        self.present(collectionVC, animated:true, completion:nil)
-
+        // 1. set collectionVC imagecollection(1) to selected collection
+        collectionVC.imageCollection = collection
+        
+        self.navigationController?.pushViewController(collectionVC, animated: true)
     }
 }
 

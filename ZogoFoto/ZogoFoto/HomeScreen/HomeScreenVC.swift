@@ -19,7 +19,8 @@ class HomeScreenVC: UIViewController {
         // Navigate to a custom xib view with a tableview
       
         let previewVC = PreviewVC(nibName: "PreviewVC", bundle: Bundle.main)
-        self.present(previewVC, animated:true, completion:nil)
+        self.navigationController?.pushViewController(previewVC, animated: true)
+//        self.present(previewVC, animated:true, completion:nil)
     }
     
     override func viewDidLoad() {
